@@ -42,6 +42,12 @@ public class Departamento {
     protected Departamento() {
     }
 
+    public Departamento(String nome, Predio predio, Set<Especialidade> especialidades) {
+        this.nome = nome;
+        this.predio = predio;
+        this.especialidades = especialidades;
+    }
+
     /** RN02: o departamento aceita a especialidade? Compara pelo id. */
     public boolean aceita(Especialidade especialidade) {
         return especialidades.stream().anyMatch(e -> e.getId().equals(especialidade.getId()));

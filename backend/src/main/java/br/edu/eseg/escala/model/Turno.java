@@ -32,6 +32,13 @@ public class Turno {
     protected Turno() {
     }
 
+    public Turno(String nome, String horaInicio, String horaFim, Integer duracaoHoras) {
+        this.nome = nome;
+        this.horaInicio = horaInicio;
+        this.horaFim = horaFim;
+        this.duracaoHoras = duracaoHoras;
+    }
+
     public Long getId() {
         return id;
     }

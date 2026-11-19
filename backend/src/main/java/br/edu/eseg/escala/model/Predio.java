@@ -24,6 +24,11 @@ public class Predio {
     protected Predio() {
     }
 
+    public Predio(String nome, String endereco) {
+        this.nome = nome;
+        this.endereco = endereco;
+    }
+
     public Long getId() {
         return id;
     }

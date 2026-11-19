@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.edu.eseg.escala.model.Predio;
 
 public interface PredioRepository extends JpaRepository<Predio, Long> {
+
+    boolean existsByNomeIgnoreCase(String nome);
 }

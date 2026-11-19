@@ -1,5 +1,5 @@
 ### Requisições prontas para IntelliJ (HTTP Client) ou VS Code (extensão REST Client)
-@api = http://localhost:8080/api
+@api = http://localhost:8081/api
 
 ### Q1: escala semanal da Ana Ribeiro (médico 1)
 GET {{api}}/medicos/1/escala
@@ -9,6 +9,49 @@ GET {{api}}/alocacoes?idPredio=3&dia=3&idTurno=2
 
 ### Apoio: departamentos e especialidades aceitas
 GET {{api}}/departamentos
+
+### ---------- Montar a estrutura (a base vem sem prédios, departamentos e turnos)
+### Prédio
+POST {{api}}/predios
+Content-Type: application/json
+
+{"nome": "Bloco A", "endereco": "Emergência"}
+
+### Prédio
+POST {{api}}/predios
+Content-Type: application/json
+
+{"nome": "Bloco B", "endereco": "Ambulatórios"}
+
+### Departamento com as especialidades aceitas (ids em GET /api/especialidades)
+POST {{api}}/departamentos
+Content-Type: application/json
+
+{"nome": "Pronto-Socorro Adulto", "idPredio": 1, "idsEspecialidades": [1, 2, 4]}
+
+### Departamento
+POST {{api}}/departamentos
+Content-Type: application/json
+
+{"nome": "Ambulatório de Ortopedia", "idPredio": 2, "idsEspecialidades": [4]}
+
+### Turnos
+POST {{api}}/turnos
+Content-Type: application/json
+
+{"nome": "Manhã", "horaInicio": "07:00", "horaFim": "13:00", "duracaoHoras": 6}
+
+### Turno
+POST {{api}}/turnos
+Content-Type: application/json
+
+{"nome": "Tarde", "horaInicio": "13:00", "horaFim": "19:00", "duracaoHoras": 6}
+
+### Turno
+POST {{api}}/turnos
+Content-Type: application/json
+
+{"nome": "Noite", "horaInicio": "19:00", "horaFim": "07:00", "duracaoHoras": 12}
 
 ### Criar alocação válida: Beatriz Falcão (25, Clínica Médica) no Pronto-Socorro Adulto, segunda de manhã
 POST {{api}}/alocacoes
