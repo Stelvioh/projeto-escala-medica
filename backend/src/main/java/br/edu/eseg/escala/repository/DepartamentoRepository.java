@@ -27,4 +27,7 @@ public interface DepartamentoRepository extends JpaRepository<Departamento, Long
             where d.id = :id
             """)
     Optional<Departamento> buscarCompleto(@Param("id") Long id);
+
+    /** Mesmo nome no mesmo prédio não pode (UNIQUE (nome, id_predio) no banco). */
+    boolean existsByNomeIgnoreCaseAndPredio_Id(String nome, Long idPredio);
 }

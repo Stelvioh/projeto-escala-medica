@@ -9,11 +9,9 @@ Spring Boot 4.1 · Java 17+ · Spring Data JPA · Hibernate 7 · SQLite
 ./mvnw test                  # roda os testes (usam uma cópia temporária do banco)
 ```
 
-Por padrão a aplicação usa `../database/escala.sqlite`. Para apontar outro arquivo:
-
-```bash
-ESCALA_DB=/caminho/outro.sqlite ./mvnw spring-boot:run
-```
+A aplicação usa `data/escala.sqlite`: todas as tabelas criadas, com médicos, especialidades e
+regimes preenchidos. Prédios, departamentos, turnos e alocações são cadastrados pela própria API,
+nessa ordem (veja `requests.http`). Não edite o arquivo do banco com a API rodando.
 
 ## Arquitetura em camadas
 
@@ -48,6 +46,9 @@ exception/    exceções e tratador global de erros (ProblemDetail)
 | DELETE | `/api/alocacoes/{id}` | remove alocação |
 | GET | `/api/predios`, `/api/departamentos?idPredio=`, `/api/departamentos/{id}` | apoio |
 | GET | `/api/turnos`, `/api/especialidades`, `/api/regimes` | apoio |
+| POST | `/api/predios` | cadastra prédio `{"nome", "endereco"}` |
+| POST | `/api/departamentos` | cadastra departamento `{"nome", "idPredio", "idsEspecialidades": [..]}` |
+| POST | `/api/turnos` | cadastra turno `{"nome", "horaInicio", "horaFim", "duracaoHoras"}` |
 | GET | `/api/relatorios/medicos-sem-alocacao` | **Q3** |
 | GET | `/api/relatorios/alocacoes-incompativeis` | **Q4** (deve ser `[]`) |
 | GET | `/api/relatorios/carga` | **Q5** horas alocadas x carga |
